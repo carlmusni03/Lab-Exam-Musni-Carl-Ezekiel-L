@@ -24,29 +24,27 @@ This project is a simple turn-based RPG battle simulator developed using C# and 
 
 ### Characters
 
-The characters in this simulator are inspired by classmates, each with unique attributes and abilities. They are categorized into two main types:
+The game features four unique characters, each with their own personality and style:
 
-*   **Melee Characters:** (e.g., Keith Rozen, Carl Ezekiel) - These characters specialize in close-range combat. They have higher melee attack damage and slightly slower movement speed.
-*   **Ranged Characters:** (e.g., Aeron James, Edward James) - These characters prefer to attack from a distance using projectiles. They have a faster movement speed compared to melee characters.
+*   **Rozen**: A methodical character who uses attacks like "Swat Bug", "Fix Glitch", and "Optimize Code".
+*   **Ezekiel**: A defensive character with attacks like "Block Connection", "Filter Packet", and "Deny Access".
+*   **A-James**: An aggressive character who uses attacks like "Inject Malware", "Corrupt Data", and "Spread Infection".
+*   **E-James**: A strategic character with attacks like "Trigger Exception", "Syntax Error", and "System Crash".
 
-Each character has properties like Health, MaxHealth, Name, and methods for attacking, taking damage, jumping, and blocking.
+All characters share the same base stats:
+* 100 HP
+* Randomized damage between 15-30 per attack
+* Unique attack names that reflect their character theme
 
-### Applied OOP Principles
+The battle system is turn-based, with each character taking turns to attack. The loser of each round gets to attack first in the next round, adding a strategic element to the gameplay.
 
-This project demonstrates the following OOP principles:
-
-*   **Abstraction:** The `Character` abstract base class defines the common interface and core functionality for all characters (e.g., `Attack()`, `TakeDamage()`), hiding the specific implementation details from the main game logic.
-*   **Inheritance:** Specific character classes (`KeithRozen`, `CarlEzekiel`, `AeronJames`, `EdwardJames`) inherit from the `Character` base class, reusing common properties and methods while providing their own unique implementations for abstract methods like `Attack()`.
-*   **Polymorphism:** The `Attack()` method is a prime example of polymorphism. While declared in the abstract `Character` class, each inherited character class provides its own specific implementation of the `Attack()` logic, resulting in different damage calculations or attack types (melee vs. projectile).
-*   **Encapsulation:** Data (like health, position, cooldowns) and methods within classes (`Character`, `CharacterModel`, `Projectile`, `HitEffect`, `DamageText`) are bundled together, and access is controlled through properties and methods, protecting the internal state of objects.
-*   **Exception Handling:** `try-catch` blocks are used to handle potential runtime errors, such as invalid user input when starting a battle (e.g., empty names), providing user-friendly feedback via `MessageBox.Show()`.
-
-How to Use
-----------
+### How to Use
 1. Enter names for both players
 2. Select character classes for each player
 3. Click "Start Battle" to begin
-4. Watch the battle unfold in the battle log
-5. The winner will be announced when the battle ends
+4. Player 1 attacks using the Space key
+5. Player 2 attacks using the Enter key
+6. The first player to win 2 rounds wins the match
+7. Click "Play Again" to start a new match
 
 Note: This is a fun project created for educational purposes. All character names and classes are fictional and not meant to represent real people. 
