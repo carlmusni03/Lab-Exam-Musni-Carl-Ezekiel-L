@@ -1,54 +1,66 @@
-## Classmates RPG Battle Simulator
+Classmates RPG Battle Simulator
 
-### Project Description
+Project Description
 
-This project is a simple turn-based RPG battle simulator developed using C# and Windows Forms. It allows two players to select characters and engage in a battle with randomized attacks and a best-of-3 round system. The UI displays character models, health bars, battle logs, and turn indicators.
+This is a simple turn-based RPG battle simulator developed using C# and Windows Forms. Two players select characters and battle using randomized attacks in a best-of-3 round format. The UI includes character models, health bars, battle logs, and turn indicators.
 
-### Object-Oriented Programming (OOP) Principles Applied
+Object-Oriented Programming (OOP) Principles Applied
 
-1.  **Encapsulation**: The `Character` class encapsulates the common properties (Name, Health, Speed, etc.) and behaviors (Attack, TakeDamage, IsAlive) of all characters. The derived classes also encapsulate their specific attack names and properties.
-2.  **Inheritance**: Derived character classes (`KeithRozen`, `CarlEzekiel`, `EdwardJames`, `AeronJames`) inherit from the abstract `Character` base class. This allows them to share common functionality while also providing their own specialized implementations (e.g., overriding the `GetAttackNames()` method).
-3.  **Polymorphism**: The `GetAttackNames()` method in the `Character` base class is marked as `virtual`, allowing derived classes to override it and provide their own specific attack names. This means that each character can have unique attack names while sharing the same base damage calculation.
-4.  **Abstraction**: The `Character` class is marked as `abstract`, meaning it cannot be instantiated directly. It serves as a blueprint for concrete character types, defining a common interface without providing a complete implementation for all methods. The `CharacterModel` class provides an abstraction layer between the character data and the UI rendering.
+1. Encapsulation  
+   The `Character` class encapsulates common properties (Name, Health, etc.) and behaviors (Attack, TakeDamage, IsAlive). Derived classes encapsulate their own specific attack names and logic.
+2. Inheritance  
+   Classes like KeithRozen, CarlEzekiel, EdwardJames, and AeronJames inherit from the abstract base class `Character`. This allows them to share base functionality and override methods like `GetAttackNames()`.
+3. Polymorphism  
+   The `GetAttackNames()` method is marked `virtual` in the base class and overridden by derived classes to provide unique attack names. The same method call behaves differently based on the actual character type.
+4. Abstraction  
+   The abstract `Character` class defines the structure all characters follow but can't be instantiated directly. The `CharacterModel` class adds a layer between character data and the UI rendering.
 
-### Battle System
+Battle System
 
-The game features a turn-based battle system with the following mechanics:
+Base Stats
+- All characters start with 100 HP
+- Attack damage is randomized between 15–30
+- Each character has unique attack names based on their theme
 
-1. **Base Stats**:
-   - All characters have 100 HP
-   - Base attack damage is randomized between 15-30
-   - Each character has unique attack names that reflect their theme
+Damage System
+- All characters follow a standardized damage logic
+- Damage appears in:
+  - Battle log messages
+  - Floating damage numbers
+  - Health bar animations
 
-2. **Damage System**:
-   - All characters use the same standardized damage system
-   - Base damage is randomly calculated between 15-30
-   - Damage is consistently displayed across:
-     - Battle log messages
-     - Floating damage numbers
-     - Health bar reduction
+Turn System
+- Players take turns attacking:
+  - Player 1: Press Space
+  - Player 2: Press Enter
+- Match follows a best-of-3 rounds system
 
-3. **Turn System**:
-   - Players take turns attacking (Space for Player 1, Enter for Player 2)
-   - The loser of each round attacks first in the next round
-   - Best-of-3 rounds to determine the match winner
+Characters
+Each character has a distinct style and set of attack names:
 
-### Characters
+Rozen  
+A methodical character  
+Attacks: "Swat Bug", "Fix Glitch", "Optimize Code"
 
-The game features four unique characters, each with their own personality and style:
+Ezekiel  
+A defensive character  
+Attacks: "Block Connection", "Filter Packet", "Deny Access"  
 
-*   **Rozen**: A methodical character who uses attacks like "Swat Bug", "Fix Glitch", and "Optimize Code". Does not use projectiles.
-*   **Ezekiel**: A defensive character with attacks like "Block Connection", "Filter Packet", and "Deny Access". Does not use projectiles.
-*   **A-James**: An aggressive character who uses attacks like "Inject Malware", "Corrupt Data", and "Spread Infection". Uses projectiles.
-*   **E-James**: A strategic character with attacks like "Trigger Exception", "Syntax Error", and "System Crash". Uses projectiles.
+A-James  
+An aggressive character  
+Attacks: "Inject Malware", "Corrupt Data", "Spread Infection"  
 
-### How to Use
-1. Enter names for both players
-2. Select character classes for each player
-3. Click "Start Battle" to begin
-4. Player 1 attacks using the Space key
-5. Player 2 attacks using the Enter key
-6. The first player to win 2 rounds wins the match
-7. Click "Play Again" to start a new match
+E-James  
+A strategic character  
+Attacks: "Trigger Exception", "Syntax Error", "System Crash"  
 
-Note: This is a fun project created for educational purposes. All character names and classes are fictional and not meant to represent real people. 
+How to Use
+1. Select a character class for each player
+2. Enter names for both players
+3. Click Start Battle  
+4. Player 1 attacks with Space  
+5. Player 2 attacks with Enter  
+6. First to win 2 rounds wins the match  
+7. Click Play Again to restart  
+
+Note: This project was created for educational purposes.
