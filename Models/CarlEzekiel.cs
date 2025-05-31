@@ -18,28 +18,11 @@ namespace Classmates_RPG_Battle_Simulator.Models
         // demonstrating polymorphism and specific class behavior.
         public override Tuple<int, string> Attack()
         {
-            // Firewall attacks: Block Connection, Filter Packet, Deny Access
-            int damage = random.Next(15, 21);
-            string attackName = "Block Connection"; // Default attack name
+            // Generate random damage between 15 and 30 (base range)
+            int damage = random.Next(15, 31);
+            string attackName = GetRandomAttackName();
 
-            int chosenAttack = random.Next(3); // Randomly choose one of three attacks
-            switch(chosenAttack)
-            {
-                case 0:
-                    attackName = "Block Connection";
-                    damage = random.Next(15, 21); // Base damage for Block Connection
-                    break;
-                case 1:
-                    attackName = "Filter Packet";
-                    damage = random.Next(17, 23); // Base damage for Filter Packet (slightly more powerful)
-                    break;
-                case 2:
-                    attackName = "Deny Access";
-                    damage = random.Next(12, 18); // Base damage for Deny Access (slightly less powerful)
-                    break;
-            }
-
-            // 35% chance for Critical Hit (Deny Access - 40% more damage)
+            // 35% chance for Critical Hit (40% more damage)
             if (random.Next(100) < 35)
             {
                 damage = (int)(damage * 1.4f);

@@ -796,10 +796,26 @@ namespace Classmates_RPG_Battle_Simulator
                 int damage = attackResult.Item1;
                 string attackName = attackResult.Item2;
 
-                battleLog.Text += $"{player1.Name} uses {attackName} for {damage} damage!\r\n";
+                // Store current health for damage text
+                int previousHealth = player2.Health;
+                
+                // Apply damage
                 player2.TakeDamage(damage);
-                player2Model.Health = player2.Health; // Update model health for drawing
-                battlePanel.Invalidate(player2Model.Bounds); // Invalidate the area of player 2
+                
+                // Calculate actual damage taken
+                int actualDamage = previousHealth - player2.Health;
+                
+                // Update battle log with actual damage taken
+                battleLog.Text += $"{player1.Name} uses {attackName} for {actualDamage} damage!\r\n";
+                
+                // Update model health
+                player2Model.Health = player2.Health;
+                
+                // Add damage text with actual damage taken
+                AddDamageText(actualDamage, new Point(player2Model.Bounds.X + player2Model.Bounds.Width / 2, player2Model.Bounds.Y));
+                
+                // Force redraw of the entire battle panel to ensure health bar updates
+                battlePanel.Invalidate();
 
                 // Call OnHit for the damaged player model
                 player2Model.OnHit();
@@ -818,7 +834,6 @@ namespace Classmates_RPG_Battle_Simulator
                     attackCooldownCountdown = ATTACK_INTERVAL_DURATION; // Start cooldown
                     attackIntervalTimer.Start();
                 }
-                battlePanel.Invalidate(); // Redraw to show health changes
             }
         }
 
@@ -833,10 +848,26 @@ namespace Classmates_RPG_Battle_Simulator
                 int damage = attackResult.Item1;
                 string attackName = attackResult.Item2;
 
-                battleLog.Text += $"{player2.Name} uses {attackName} for {damage} damage!\r\n";
+                // Store current health for damage text
+                int previousHealth = player1.Health;
+                
+                // Apply damage
                 player1.TakeDamage(damage);
-                player1Model.Health = player1.Health; // Update model health for drawing
-                battlePanel.Invalidate(player1Model.Bounds); // Invalidate the area of player 1
+                
+                // Calculate actual damage taken
+                int actualDamage = previousHealth - player1.Health;
+                
+                // Update battle log with actual damage taken
+                battleLog.Text += $"{player2.Name} uses {attackName} for {actualDamage} damage!\r\n";
+                
+                // Update model health
+                player1Model.Health = player1.Health;
+                
+                // Add damage text with actual damage taken
+                AddDamageText(actualDamage, new Point(player1Model.Bounds.X + player1Model.Bounds.Width / 2, player1Model.Bounds.Y));
+                
+                // Force redraw of the entire battle panel to ensure health bar updates
+                battlePanel.Invalidate();
 
                 // Call OnHit for the damaged player model
                 player1Model.OnHit();
@@ -855,7 +886,6 @@ namespace Classmates_RPG_Battle_Simulator
                     attackCooldownCountdown = ATTACK_INTERVAL_DURATION; // Start cooldown
                     attackIntervalTimer.Start();
                 }
-                battlePanel.Invalidate(); // Redraw to show health changes
             }
         }
 

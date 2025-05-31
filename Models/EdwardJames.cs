@@ -17,28 +17,11 @@ namespace Classmates_RPG_Battle_Simulator.Models
         // This method includes random selection of attack types and a chance for a critical hit.
         public override Tuple<int, string> Attack()
         {
-            // Error attacks: Trigger Exception, Syntax Error, System Crash
-            int damage = random.Next(22, 33);
-            string attackName = "Trigger Exception"; // Default attack name
-
-            int chosenAttack = random.Next(3); // Randomly choose one of three attacks
-            switch(chosenAttack)
-            {
-                case 0:
-                    attackName = "Trigger Exception";
-                    damage = random.Next(22, 33); // Base damage for Trigger Exception
-                    break;
-                case 1:
-                    attackName = "Syntax Error";
-                    damage = random.Next(20, 30); // Base damage for Syntax Error (slightly less powerful)
-                    break;
-                case 2:
-                    attackName = "System Crash";
-                    damage = random.Next(28, 40); // Base damage for System Crash (more powerful)
-                    break;
-            }
+            // Generate random damage between 15 and 30 (base range)
+            int damage = random.Next(15, 31);
+            string attackName = GetRandomAttackName();
             
-            // 18% chance for Critical Hit (System Crash - 80% more damage)
+            // 18% chance for Critical Hit (80% more damage)
             if (random.Next(100) < 18)
             {
                 damage = (int)(damage * 1.8f);
