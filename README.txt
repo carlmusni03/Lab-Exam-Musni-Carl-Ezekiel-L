@@ -33,6 +33,7 @@ Turn System
 - Players take turns attacking:
   - Player 1: Press Space
   - Player 2: Press Enter
+- The loser of the previous round attacks first in the next round
 - Match follows a best-of-3 rounds system
 
 Characters
